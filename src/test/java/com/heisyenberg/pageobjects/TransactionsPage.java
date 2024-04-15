@@ -4,27 +4,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionsPage extends PageObject {
-    private static final String TRANSACTIONS_URL =
-            "https://www.globalsqa.com/" +
-                    "angularJs-protractor/BankingProject/#/listTx";
-
     public TransactionsPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void open() {
         getElement(By.xpath("//button[contains(.,'Transactions')]"))
                 .click();
-        driver.get(TRANSACTIONS_URL);
-        driver.navigate().refresh();
     }
 
     public List<String[]> getTransactions() {
         By by = By.cssSelector("tr[id^='anchor']");
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         List<String[]> transactions = new ArrayList<>();
         List<WebElement> elements = driver.findElements(by);

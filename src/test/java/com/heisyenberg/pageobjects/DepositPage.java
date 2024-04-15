@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 public class DepositPage extends PageObject {
     public DepositPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void open() {
         getElement(By.xpath("//button[contains(.,'Deposit')]"))
                 .click();
     }

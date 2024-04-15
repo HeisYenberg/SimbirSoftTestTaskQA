@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 public class WithdrawalPage extends PageObject {
     public WithdrawalPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void open() {
         getElement(By.xpath("//button[contains(.,'Withdrawl')]"))
                 .click();
     }

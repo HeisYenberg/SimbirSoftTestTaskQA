@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 public class LoginPage extends PageObject {
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public void open() {
         getElement(By.cssSelector(
                 "button.btn.btn-primary.btn-lg[ng-click='customer()']"))
                 .click();

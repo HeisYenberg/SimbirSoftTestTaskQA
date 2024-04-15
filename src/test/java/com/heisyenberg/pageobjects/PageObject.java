@@ -8,13 +8,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageObject {
     protected final WebDriver driver;
+    protected final WebDriverWait wait;
 
     public PageObject(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 20);
     }
 
     protected WebElement getElement(By by) {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         return driver.findElement(by);
     }
