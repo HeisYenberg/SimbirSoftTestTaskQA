@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.heisyenberg</groupId>
+    <groupId>com.simbirsoft</groupId>
     <artifactId>SimbirSoftTestTaskQA</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -36,12 +36,13 @@
                             </name>
                             <value>true</value>
                         </property>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${project.basedir}/target/allure-results
-                            </value>
-                        </property>
                     </systemProperties>
+                    <systemPropertyVariables>
+                        <propertyName>propertyValue</propertyName>
+                        <buildDirectory>
+                            ${project.build.directory}/target
+                        </buildDirectory>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -91,12 +92,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
             <version>2.27.0</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
 </project>

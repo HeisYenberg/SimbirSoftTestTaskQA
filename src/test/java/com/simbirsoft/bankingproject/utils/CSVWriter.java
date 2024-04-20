@@ -1,4 +1,4 @@
-package com.heisyenberg;
+package com.simbirsoft.bankingproject.utils;
 
 import io.qameta.allure.Attachment;
 
@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class CSVWriter {
+    private static final String TRANSACTIONS_CSV = "target/transactions.csv";
+
     @Attachment(value = "Transaction History", type = "text/csv")
     public static String writeCSV(List<String[]> transactions) {
-        try (FileWriter writer = new FileWriter("transactions.csv")) {
+        try (FileWriter writer = new FileWriter(TRANSACTIONS_CSV)) {
             StringJoiner joiner = new StringJoiner("\n");
             for (String[] transaction : transactions) {
                 joiner.add(transaction[0] + "," + transaction[1] + "," +

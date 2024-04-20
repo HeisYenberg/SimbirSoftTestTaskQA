@@ -1,6 +1,8 @@
-package com.heisyenberg;
+package com.simbirsoft.bankingproject;
 
-import com.heisyenberg.pageobjects.*;
+import com.simbirsoft.bankingproject.pageobjects.*;
+import com.simbirsoft.bankingproject.utils.CSVWriter;
+import com.simbirsoft.bankingproject.utils.Fibonacci;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -16,8 +18,6 @@ import java.util.List;
 
 public class MainTest {
     private static final String GRID_URL = "http://localhost:4444/wd/hub";
-    private static final String LOGIN_URL = "https://www.globalsqa.com/" +
-            "angularJs-protractor/BankingProject/#/login";
     private static final String[] TRANSACTIONS = {"Credit", "Debit"};
     private static WebDriver driver;
 
@@ -26,7 +26,6 @@ public class MainTest {
     public static void setup() throws MalformedURLException {
         ChromeOptions capabilities = new ChromeOptions();
         driver = new RemoteWebDriver(new URL(GRID_URL), capabilities);
-        driver.get(LOGIN_URL);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
         loginPage.setUsername("Harry Potter");
@@ -46,12 +45,13 @@ public class MainTest {
 
     @Step
     private static void testWithdraw() {
+        Integer balance = 0;
         BalancePage balancePage = new BalancePage(driver);
         WithdrawalPage withdrawalPage = new WithdrawalPage(driver);
         withdrawalPage.open();
         withdrawalPage.setAmount(Fibonacci.getFibonacci());
         withdrawalPage.submit();
-        Assertions.assertEquals(balancePage.getBalance(), "0");
+        Assertions.assertEquals(balancePage.getBalance(), balance.toString());
     }
 
     @Step

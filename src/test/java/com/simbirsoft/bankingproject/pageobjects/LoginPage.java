@@ -1,4 +1,4 @@
-package com.heisyenberg.pageobjects;
+package com.simbirsoft.bankingproject.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,8 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class LoginPage extends PageObject {
+    private static final String LOGIN_URL = "https://www.globalsqa.com/" +
+            "angularJs-protractor/BankingProject/#/login";
+
     public LoginPage(WebDriver driver) {
         super(driver);
+        driver.get(LOGIN_URL);
     }
 
     public void open() {
